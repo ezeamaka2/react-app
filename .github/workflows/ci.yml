@@ -20,10 +20,10 @@ jobs:
         env:
           CI: true
       - name: Build Project
-        if: github.event_name == "push"
+        if: github.event_name == push'
         run: npm run build
       - name: Deploy To Stagging
-        if: github.event_name == "push"
+        if: github.event_name == 'push'
         run: npx surge --project ./build --domain https://doubtful-government.surge.sh/
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
