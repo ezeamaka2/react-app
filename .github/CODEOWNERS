@@ -1,4 +1,5 @@
 * @ezeamaka2
 *.js @ezeamaka2
 *.yml @codewitheze
+*.css @ezeamaka2
 /public/ @codewitheze
