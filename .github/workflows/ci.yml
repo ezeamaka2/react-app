@@ -33,8 +33,7 @@ jobs:
         with:
           name: code-coverage
           path: coverage
-      - name: Build Project
-      - name: Upload Build Folder
+      - name: Build Project and Upload Build Folder
         uses: actions/upload-artifact@v3
         with:
           name: build
