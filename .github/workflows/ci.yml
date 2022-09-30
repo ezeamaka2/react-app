@@ -13,10 +13,12 @@ jobs:
       - name: Cache node modules
         uses: actions/cache@v3
         with:
-          path: ~\AppData\npm-cache
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-key: |
-            ${{ runner.os }}-node-
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
       - name: Use Node Js
         uses: actions/setup-node@v3
         with:
