@@ -1,5 +1,5 @@
 name: CI
-on: 
+on:
   pull_request:
     branches: [develop]
   push:
@@ -13,9 +13,9 @@ jobs:
       - name: Cache node modules
         uses: actions/cache@v3
         with:
-          path: ~\.npm
+          path: ~\AppData\npm-cache
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
+          restore-key: |
             ${{ runner.os }}-node-
       - name: Use Node Js
         uses: actions/setup-node@v3
