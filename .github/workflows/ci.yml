@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+      SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - name: Cache node modules
@@ -53,8 +56,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy To Stagging
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && github.ref == 'ref/heads/develop'
         run: npx surge --project ./build --domain https://doubtful-government.surge.sh/
+      - name: Deploy To Production
+        if: github.event_name == 'push' && github.ref == 'ref/heads/master'
+        run: npx surge --project ./build --domain https://voiceless-appliance.surge.sh//
+      - name: Upload code coverage Report
+        if: github.event_name == 'push' && github.ref == 'ref/heads/master'
+        run: npx codecov
         env:
-          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
-          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
