@@ -4,7 +4,7 @@ on:
     types: [opened]
 
 jobs:
-  slack-message:
+  slack_message:
     runs-on: ubuntu-latest
     steps:
       - name: Slack Message on Issue
