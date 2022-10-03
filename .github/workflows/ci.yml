@@ -54,12 +54,12 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: npx semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.CUSTOM_TOKEN }}
       - name: Deploy To Stagging
         if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
         run: npx surge --project ./build --domain https://doubtful-government.surge.sh/
       - name: Deploy To Production
-        if: github.event_name == 'push' && github.ref == 'ref/heads/master'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: npx surge --project ./build --domain https://voiceless-appliance.surge.sh//
       - name: Upload code coverage Report
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
