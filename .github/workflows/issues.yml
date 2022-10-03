@@ -10,3 +10,5 @@ jobs:
       - name: Slack Message
         run: |
           curl -X POST -H 'Content-type: application/json' --data '{"text":"New Issue Created: <${{ github.event.issue.html_url }}|${{ github.event.issue.title }}>"}' ${{ secrets.SLACK_WEBHOOK }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.CUSTOM_TOKEN }}
